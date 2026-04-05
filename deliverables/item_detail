@@ -1,5 +1,4 @@
-curl http://localhost:5000/api/gifts/<item_id>
+curl -s http://localhost:5050/api/gifts/69d2c0ff0d98076dee0c688a
 
-Expected output:
-- JSON object for the requested gift item
-
+Output:
+{"title":"Solid Oak Dining Table","description":"Six-seat wooden dining table with minor surface wear and sturdy legs.","category":"Furniture","condition":"Good","location":"Brooklyn, NY","ownerName":"Maya","pickupNotes":"Evening pickup preferred.","imageUrl":"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80","tags":["wood","dining","family"],"createdAt":"2026-03-10T10:00:00.000Z","_id":"69d2c0ff0d98076dee0c688a"}

@@ -1,7 +1,4 @@
-curl -X POST http://localhost:5000/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"email":"demo@example.com","password":"Password123"}'
+curl -s -X POST http://localhost:5050/api/auth/login -H "Content-Type: application/json" -d '{"email":"demo@example.com","password":"Password123"}'
 
-Expected output:
-- JSON payload containing `token` and `user`
-
+Output:
+{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OWQyYmZkNzFiZTdjYzk3OTNmMmE4MWMiLCJlbWFpbCI6ImRlbW9AZXhhbXBsZS5jb20iLCJuYW1lIjoiRGVtbyBVc2VyIiwiaWF0IjoxNzc1NDE5MzUyLCJleHAiOjE3NzYwMjQxNTJ9.zlyfNniUyAHUEEM3KEX7okle-TlqcysfccFfHMn5OCY","user":{"id":"69d2bfd71be7cc9793f2a81c","name":"Demo User","email":"demo@example.com","city":"Dhaka","bio":"","avatarUrl":""}}

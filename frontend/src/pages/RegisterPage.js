@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { createElement as h, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth.js";
 
@@ -40,31 +40,40 @@ export default function RegisterPage() {
     }
   }
 
-  return (
-    <section className="auth-card">
-      <p className="eyebrow">Create account</p>
-      <h1>Join GiftLink</h1>
-      <form className="stack" onSubmit={handleSubmit}>
-        <input name="name" onChange={handleChange} placeholder="Name" required value={form.name} />
-        <input name="email" onChange={handleChange} placeholder="Email" required type="email" value={form.email} />
-        <input
-          name="password"
-          onChange={handleChange}
-          placeholder="Password"
-          required
-          type="password"
-          value={form.password}
-        />
-        <input name="city" onChange={handleChange} placeholder="City" value={form.city} />
-        {error ? <p className="error-text">{error}</p> : null}
-        <button className="primary-button" type="submit">
-          Register
-        </button>
-      </form>
-      <p>
-        Already have an account? <Link to="/login">Login</Link>
-      </p>
-    </section>
+  return h(
+    "section",
+    { className: "auth-card" },
+    h("p", { className: "eyebrow" }, "Create account"),
+    h("h1", null, "Join GiftLink"),
+    h(
+      "form",
+      { className: "stack", onSubmit: handleSubmit },
+      h("input", { name: "name", onChange: handleChange, placeholder: "Name", required: true, value: form.name }),
+      h("input", {
+        name: "email",
+        onChange: handleChange,
+        placeholder: "Email",
+        required: true,
+        type: "email",
+        value: form.email
+      }),
+      h("input", {
+        name: "password",
+        onChange: handleChange,
+        placeholder: "Password",
+        required: true,
+        type: "password",
+        value: form.password
+      }),
+      h("input", { name: "city", onChange: handleChange, placeholder: "City", value: form.city }),
+      error ? h("p", { className: "error-text" }, error) : null,
+      h("button", { className: "primary-button", type: "submit" }, "Register")
+    ),
+    h(
+      "p",
+      null,
+      "Already have an account? ",
+      h(Link, { to: "/login" }, "Login")
+    )
   );
 }
-

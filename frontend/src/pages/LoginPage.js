@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { createElement as h, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth.js";
 
@@ -41,29 +41,38 @@ export default function LoginPage() {
     }
   }
 
-  return (
-    <section className="auth-card">
-      <p className="eyebrow">Welcome back</p>
-      <h1>Login to GiftLink</h1>
-      <form className="stack" onSubmit={handleSubmit}>
-        <input name="email" onChange={handleChange} placeholder="Email" required type="email" value={form.email} />
-        <input
-          name="password"
-          onChange={handleChange}
-          placeholder="Password"
-          required
-          type="password"
-          value={form.password}
-        />
-        {error ? <p className="error-text">{error}</p> : null}
-        <button className="primary-button" type="submit">
-          Login
-        </button>
-      </form>
-      <p>
-        Need an account? <Link to="/register">Register</Link>
-      </p>
-    </section>
+  return h(
+    "section",
+    { className: "auth-card" },
+    h("p", { className: "eyebrow" }, "Welcome back"),
+    h("h1", null, "Login to GiftLink"),
+    h(
+      "form",
+      { className: "stack", onSubmit: handleSubmit },
+      h("input", {
+        name: "email",
+        onChange: handleChange,
+        placeholder: "Email",
+        required: true,
+        type: "email",
+        value: form.email
+      }),
+      h("input", {
+        name: "password",
+        onChange: handleChange,
+        placeholder: "Password",
+        required: true,
+        type: "password",
+        value: form.password
+      }),
+      error ? h("p", { className: "error-text" }, error) : null,
+      h("button", { className: "primary-button", type: "submit" }, "Login")
+    ),
+    h(
+      "p",
+      null,
+      "Need an account? ",
+      h(Link, { to: "/register" }, "Register")
+    )
   );
 }
-
